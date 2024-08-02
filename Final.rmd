@@ -150,6 +150,33 @@ The data shows that among girls or women, 35% of those who received the vaccine 
 
 The risk of contracting COVID-19 for vaccinated girls is 1:1, indicating that for every vaccinated individual who contracts the virus, there is one who does not. In contrast, the risk of contracting the virus is reduced by half among those who received the vaccine compared to those in the placebo group. This demonstrates the vaccine's effectiveness in protecting against COVID-19.
 
+### Inferential 
+
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+Femalesfish <- fisher.test(table1)
+Femalesfish
+```
+
+The results of Fisher's Exact test are crucial to consider in this analysis. The extremely low p-value of \(2 \times 10^{-8}\) strongly suggests that the observed findings are not due to random chance. Consequently, we can reject the null hypothesis and accept the alternative hypothesis.
+
+The odds ratio calculated from Fisher's Exact Test is 1.9. This indicates that women who were administered the medication had a 0.32 times higher likelihood of contracting COVID-19 compared to those who were given a placebo.
+
+
+
+```{r}
+effect <- Femalesfish$p.value/(Femalesfish$p.value +1)
+effectivenessFemales = Femalesfish$estimate/(Femalesfish$estimate +1)*100
+print(effectivenessFemales)
+```
+
+```{r}
+low=(Femalesfish$conf.int[1]/(Femalesfish$conf.int[1] +1))*100
+hi=(Femalesfish$conf.int[2]/(Femalesfish$conf.int[2] +1))*100
+options(digits=2)
+```
+
 
 
 ## LGBTQ
