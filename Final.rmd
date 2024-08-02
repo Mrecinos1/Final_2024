@@ -102,6 +102,42 @@ The effectiveness of the vaccine for males is further supported by an odds ratio
 
 ## Females
 
+### Barplot
+
+
+
+```{r}
+Females <-filter(FinalDat, sex=="F")
+```
+
+
+```{r}
+Females <-select(Females,-sex)
+```
+
+
+
+```{r}
+dd2 <- Females %>% group_by(infected,treatment) %>% summarize(count=n()) %>% mutate(prcnt=count/sum(count))
+
+
+# the group_by followed by summarize(count=n())
+
+basicC <- ggplot(dd2,aes(x=infected,y=count,fill=treatment))
+basicC + geom_bar(stat="identity",position="dodge")
+
+#Now for percentage plot
+
+basicCC <- ggplot(dd2,aes(x=infected,y=prcnt*100,fill=treatment)) 
+basicCC + geom_bar(stat="identity", position = "dodge")
+```
+
+This plot illustrates the relationship between COVID-19 infection rates and the administration of a vaccine or placebo among females. The data suggest that individuals who received the placebo were more likely to contract COVID-19 compared to those who were vaccinated. Specifically, only about 35% of those who contracted COVID-19 had received the vaccine, indicating that approximately 65% of infections occurred in the placebo group. This implies that the risk of contracting COVID-19 after receiving the vaccine is about 1:2.
+
+The first plot displays the number of individuals who contracted COVID-19 on the x-axis, labeled "infected," and the count of individuals on the y-axis. This plot shows the total number of individuals who either contracted COVID-19 or did not.
+
+The second plot focuses on those who contracted COVID-19, represented by the two bars on the left. The x-axis categorizes individuals based on their COVID-19 status, while the y-axis now presents the percentage of individuals who contracted COVID-19 after receiving either the vaccine or a placebo, rather than the total number of cases. This plot emphasizes the proportion of infections among vaccinated and placebo groups.
+
 
 ## LGBTQ
 
