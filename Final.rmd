@@ -177,6 +177,11 @@ hi=(Femalesfish$conf.int[2]/(Femalesfish$conf.int[2] +1))*100
 options(digits=2)
 ```
 
+### Effectiveness Confidence Interval `r low`  to `r hi`
+
+
+The COVID-19 vaccine is highly effective for females, with an efficacy rate exceeding the 65% threshold. Given that the rate is above 70%, which is the standard for vaccine effectiveness, it's clear that this vaccine is very successful in protecting women from contracting COVID-19.
+
 
 
 ## LGBTQ
