@@ -289,4 +289,14 @@ Two plots are present. The x-axis in the first plot indicates infected, denoting
 
 In the above-mentioned second plot, The All of the individuals with COVID-19 are represented by the graph's left two bars. Whether or not a person has COVID-19 is shown on the x-axis. However, the y-axis now shows the percentage of patients who contracted COVID-19 after receiving the vaccine or a placebo, rather than the total number of cases of this disease. 
 
+### Numerical results
+
+```{r}
+table1 <- xtabs(~infected + treatment, data= Drugs)
+rowPerc(table1)
+colPerc(table1)
+```
+
+Numerical data shows that 33% of drug users who were vaccinated against COVID-19 contracted the virus, compared to 67% of those who received a placebo. These results clearly demonstrate the efficacy of the COVID-19 vaccine in reducing the risk of infection among drug users. It is advisable for drug users to get vaccinated, as the vaccine halves the likelihood of contracting COVID-19 compared to the placebo group. In summary, the vaccine significantly decreases the risk of COVID-19 among drug users, underscoring its protective benefits.
+
 # Overall Results and Conclusions
