@@ -255,5 +255,38 @@ The odds ratio, which approximates vaccine effectiveness, is 81 for the LGBTQ (g
 
 ## Druggies
 
+### Barplot
+
+```{r}
+Drugs <-filter(FinalDat, DrugUser=="no")
+```
+
+```{r}
+Drugs <-select(Drugs,-DrugUser)
+```
+
+
+```{r}
+dd2 <-  Drugs %>% group_by(infected,treatment) %>% summarize(count=n()) %>% mutate(prcnt=count/sum(count))
+
+
+# the group_by followed by summarize(count=n())
+
+basicC <- ggplot(dd2,aes(x=infected,y=count,fill=treatment))
+basicC + geom_bar(stat="identity",position="dodge")
+
+#Now for percentage plot
+
+basicCC <- ggplot(dd2,aes(x=infected,y=prcnt*100,fill=treatment)) 
+basicCC + geom_bar(stat="identity", position = "dodge")
+```
+
+The population that responded "Druguser" to questions about drug usage and its connection to contracting COVID-19 while receiving either the vaccine or a placebo is depicted in this figure.
+
+According to this barplot, around 51% of respondents who admitted to drug use and received the vaccination also had COVID-19. According to this, almost 49% of drug users who merely took a placebo ended up with COVID-19.There is a 1:1 chance of contracting COVID-19 while receiving the vaccination. The risk of contracting COVID-19 was halved among drug users who received the vaccine compared to those who received a placebo.
+
+Two plots are present. The x-axis in the first plot indicates infected, denoting whether or not the participants have COVID-19 infection. The count, or total number of individuals who received COVID-19 or not, is shown on the y-axis.
+
+In the above-mentioned second plot, The All of the individuals with COVID-19 are represented by the graph's left two bars. Whether or not a person has COVID-19 is shown on the x-axis. However, the y-axis now shows the percentage of patients who contracted COVID-19 after receiving the vaccine or a placebo, rather than the total number of cases of this disease. 
 
 # Overall Results and Conclusions
