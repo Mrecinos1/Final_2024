@@ -222,6 +222,29 @@ The data indicates that 20% of LGBT individuals who were vaccinated contracted C
 
 The likelihood of contracting COVID-19 is 3.2 times higher with the placebo than with the vaccine. This demonstrates a significantly increased risk for those who received the placebo compared to those who were vaccinated.
 
+### Inferential 
+
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+LGBTQfish <- fisher.test(table1)
+LGBTQfish
+```
+
+The p-value presented is exceptionally low, at 2e-06, indicating a very small likelihood that the observed results are due to chance. The null hypothesis posits no connection between gender and COVID-19 mortality rates. However, the substantial evidence suggesting that gender does impact mortality rates supports the alternative hypothesis, which proposes a relationship between gender and COVID-19-related deaths.
+
+
+```{r}
+effect <- LGBTQfish$p.value/(LGBTQfish$p.value +1)
+effectivenessLGBTQ = LGBTQfish$estimate/(LGBTQfish$estimate +1)*100
+print(effectivenessLGBTQ)
+```
+
+```{r}
+low=(LGBTQfish$conf.int[1]/(LGBTQfish$conf.int[1] +1))*100
+hi=(LGBTQfish$conf.int[2]/(LGBTQfish$conf.int[2] +1))*100
+options(digits=2)
+```
 
 
 
