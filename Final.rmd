@@ -66,6 +66,33 @@ colPerc(table1)
 
 Numerical data shows that while 74% of men who were given a placebo contracted COVID-19, only 26% of those who received the vaccine did. This indicates that the vaccine significantly reduces the likelihood of contracting COVID-19 compared to a placebo. In summary, the vaccine is more effective than the placebo, with the risk of contracting the virus being about twice as high with the placebo.
 
+### Inferential 
+
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+Malesfish <- fisher.test(table1)
+Malesfish
+```
+
+
+The results from the Fisher's Exact test are crucial to consider, especially given the extremely small p-value of \(2.2 \times 10^{-16}\). This very low figure suggests that the observed outcomes are highly unlikely to have occurred by chance.
+
+The null hypothesis posits that there is no association between sex and COVID-19 mortality. However, the alternative hypothesis, which suggests a relationship between sex and death rates from COVID-19, appears more plausible based on the strong statistical evidence indicating that sex does indeed influence mortality rates.
+
+
+
+```{r}
+effect <- Malesfish$p.value/(Malesfish$p.value +1)
+effectivenessMales = Malesfish$estimate/(Malesfish$estimate +1)*100
+print(effectivenessMales)
+```
+
+```{r}
+low=(Malesfish$conf.int[1]/(Malesfish$conf.int[1] +1))*100
+hi=(Malesfish$conf.int[2]/(Malesfish$conf.int[2] +1))*100
+options(digits=2)
+```
 
 
 ## Females
