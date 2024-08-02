@@ -26,6 +26,38 @@ A new  preventative vaccine (covid921) is under test in clinical trials. Given t
 
 ## Males
 
+### Barplot
+
+```{r}
+Males <-filter(FinalDat, sex=="M")
+```
+
+
+```{r}
+Males <-select(Males,-sex)
+```
+
+```{r}
+dd2 <- Males %>% group_by(infected,treatment) %>% summarize(count=n()) %>% mutate(prcnt=count/sum(count))
+
+
+# the group_by followed by summarize(count=n())
+
+basicC <- ggplot(dd2,aes(x=infected,y=count,fill=treatment))
+basicC + geom_bar(stat="identity",position="dodge")
+
+#Now for percentage plot
+
+basicCC <- ggplot(dd2,aes(x=infected,y=prcnt*100,fill=treatment)) 
+basicCC + geom_bar(stat="identity", position = "dodge")
+```
+
+The males population is represented in this plot along with its relationship to the COVID-19 infection by using either a placebo or the vaccine. 
+
+The data indicates that among those who received the vaccine, only 26% contracted COVID-19, whereas approximately 74% of those given a placebo developed the disease. This suggests that the vaccine significantly reduces the risk of contracting COVID-19. In fact, those who received the placebo were about three times more likely to contract COVID-19 compared to those who were vaccinated. Therefore, the vaccine appears to reduce the risk of contracting COVID-19 by about 1.5 times compared to the placebo. Two plots are described. The first plot has an x-axis labeled "infected," indicating the COVID-19 infection status of participants. The y-axis shows the count of individuals either infected or not infected by COVID-19. The second plot focuses exclusively on individuals with COVID-19, as shown by the left two bars of the graph. The x-axis remains labeled by infection status. Unlike the first plot, the y-axis in the second plot displays the percentage of individuals who contracted COVID-19, distinguishing between those who received a vaccine and those who were given a placebo.
+
+
+
 
 ## Females
 
