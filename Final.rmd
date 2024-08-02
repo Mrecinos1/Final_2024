@@ -138,6 +138,19 @@ The first plot displays the number of individuals who contracted COVID-19 on the
 
 The second plot focuses on those who contracted COVID-19, represented by the two bars on the left. The x-axis categorizes individuals based on their COVID-19 status, while the y-axis now presents the percentage of individuals who contracted COVID-19 after receiving either the vaccine or a placebo, rather than the total number of cases. This plot emphasizes the proportion of infections among vaccinated and placebo groups.
 
+### Numerical Results
+
+```{r}
+table1 <- xtabs(~infected + treatment, data=Females)
+rowPerc(table1)
+colPerc(table1)
+```
+
+The data shows that among girls or women, 35% of those who received the vaccine contracted COVID-19, compared to 65% of those who were given a placebo. This suggests that the vaccine significantly reduces the risk of contracting COVID-19 in this group.
+
+The risk of contracting COVID-19 for vaccinated girls is 1:1, indicating that for every vaccinated individual who contracts the virus, there is one who does not. In contrast, the risk of contracting the virus is reduced by half among those who received the vaccine compared to those in the placebo group. This demonstrates the vaccine's effectiveness in protecting against COVID-19.
+
+
 
 ## LGBTQ
 
