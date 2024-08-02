@@ -186,7 +186,29 @@ The COVID-19 vaccine is highly effective for females, with an efficacy rate exce
 
 ## LGBTQ
 
+### Barplot
 
+```{r}
+LGBTQ <-filter(FinalDat, LGBTQ=="gay")
+```
+
+
+```{r}
+dd2 <- LGBTQ %>% group_by(infected,treatment) %>% summarize(count=n()) %>% mutate(prcnt=count/sum(count))
+
+
+# the group_by followed by summarize(count=n())
+
+basicC <- ggplot(dd2,aes(x=infected,y=count,fill=treatment))
+basicC + geom_bar(stat="identity",position="dodge")
+
+#Now for percentage plot
+
+basicCC <- ggplot(dd2,aes(x=infected,y=prcnt*100,fill=treatment)) 
+basicCC + geom_bar(stat="identity", position = "dodge")
+```
+
+The bar plot indicates that 19% of LGBTQ individuals who received a COVID-19 vaccine contracted the virus, compared to 80% who received a placebo and also contracted it. This suggests that LGBTQ individuals who were given a placebo had a higher likelihood of contracting COVID-19 than those who were vaccinated.
 
 ## Druggies
 
